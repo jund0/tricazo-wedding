@@ -135,6 +135,23 @@ h2,h3{
   transform:scale(0.3);
 }
 
+#content-overlay{
+  top: 0; left: 0; right: 0; bottom: 0;
+  height:100%;
+  width:100%;
+  position:absolute;
+  background-color: rgb(106, 137, 83);
+  z-index:900;
+}
+#content-overlay > img{
+  width:100%;
+  max-width:128px; /* real image width */
+  position:fixed;
+  top:0; left:0; right:0; bottom:0;
+  margin:auto;
+
+}
+
 .flower-animate{
   opacity:1 !important;
   transform: scale(.8) rotate(35deg) !important;

@@ -1,12 +1,10 @@
 import React from 'react';
+import Landing from "../components/Landing";
 
 const Home = () => {
   return (
     <div>
-      <h1 className="font-bold text-2xl">
-        Landing Page
-      </h1>
-
+      <Landing />
     </div>
   );
 };

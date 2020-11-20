@@ -34,8 +34,10 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background:rgb(233, 163, 145);
+  background:url('css/images/pattern2.jpg');
+  background-attachment: fixed;
+  height: 100% !important;
 }
 
 code {
@@ -52,6 +54,10 @@ h1{
 h2,h3{
   font-family: 'ostrich_sans_rounded';
   letter-spacing: 2px;
+}
+
+p {
+ font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .img-responsive {
@@ -76,7 +82,6 @@ h2,h3{
   flex: 1;
 }
 
-/*** - Navigation */
 header {
   position: fixed;
   top: 0;
@@ -90,6 +95,49 @@ header {
   left: 0;
 }
 
+footer {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  background-color: rgb(124, 156, 102);
+  border-top: 2px solid rgb(233, 163, 145);
+}
+footer p {
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+  line-height: 2em;
+  letter-spacing: 3px;
+  margin: 0;
+  padding: 15px;
+}
+
+.section-content {
+  padding: 5% 0;
+  margin: 0 5%;
+}
+
+.section-content p{
+  line-height: 2em;
+  letter-spacing: 3px;
+  font-size: 1em;
+}
+
+.succulent-flower{
+  height:250px;
+  position:relative;
+}
+
+.succulent-flower .flower {
+  width:20%;
+  display:block;
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  margin:auto;
+  opacity:1;
+}
 
 /*** Unique */
 #home-landscape{
@@ -101,6 +149,7 @@ header {
   text-align: center;
   height:100%;
   width:100%;
+  box-shadow: 1px 5px 3px rgba(0,0,0,0.5);
 }
 
 #home-landscape .wrapper {
@@ -165,6 +214,17 @@ header {
   top:0; left:0; right:0; bottom:0;
   margin:auto;
 }
+/*** - Landing */
+#main-content {
+  text-align: center;
+}
+#intro  h1{
+  margin-bottom: 0;
+}
+#intro  h2{
+  margin-top: 0;
+}
+/*** - Landing */
 /*** - Navigation */
 #menu-icon{
   width: 45px;
@@ -175,15 +235,13 @@ header {
   position: absolute;
   right: 0;
   top: 0;
-  width: 40%;
-  min-width: 625px;
   display: flex;
-  height: 50px;
+  height: 40px;
+  width: 40px;
   border-radius: 20px;
   background-color: #e9a391;
   margin: 2%;
   z-index: 999;
-  overflow:hidden;
   box-shadow: rgba(0, 0, 0, 1) 0px 0px 8px;
   -webkit-transition: all .4s ease-in-out;
   -moz-transition: all .4s ease-in-out;
@@ -192,13 +250,24 @@ header {
   transition: all .4s ease-in-out;
 }
 
+.menu-container.open {
+  height: 50px;
+  width: auto;
+}
+
+.menu-container.open  .nav-bar{
+  flex: 1;
+  overflow: visible;
+}
+
 .nav-bar {
   background: none;
   border: none;
   transition: all .4s ease-in-out;
   min-height: 50px;
   margin-bottom: 20px;
-  flex: 1;
+  flex: 0;
+  overflow:hidden;
 }
 
 .nav-bar ul {
@@ -230,6 +299,9 @@ header {
   background-color: transparent;
 }
 /*** - Navigation */
+
+
+
 
 .flower-animate{
   opacity:1 !important;

@@ -76,6 +76,21 @@ h2,h3{
   flex: 1;
 }
 
+/*** - Navigation */
+header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+.header-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
 /*** Unique */
 #home-landscape{
   background:url('css/images/landing-main2.jpg') no-repeat center center;
@@ -149,8 +164,72 @@ h2,h3{
   position:fixed;
   top:0; left:0; right:0; bottom:0;
   margin:auto;
-
 }
+/*** - Navigation */
+#menu-icon{
+  width: 45px;
+  height: 45px;
+  margin: 5px;
+}
+.menu-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40%;
+  min-width: 625px;
+  display: flex;
+  height: 50px;
+  border-radius: 20px;
+  background-color: #e9a391;
+  margin: 2%;
+  z-index: 999;
+  overflow:hidden;
+  box-shadow: rgba(0, 0, 0, 1) 0px 0px 8px;
+  -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  -o-transtion: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.nav-bar {
+  background: none;
+  border: none;
+  transition: all .4s ease-in-out;
+  min-height: 50px;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.nav-bar ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-left: 0;
+  margin: 0 0 0 15px;
+}
+
+.nav-bar ul li {
+  list-style: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.nav-bar ul li a, .nav-bar ul li span {
+  font-size: 12px;
+  padding: 0;
+  color: #333;
+  line-height: 50px;
+  margin: 0 5px;
+  text-decoration: none;
+}
+.nav-bar ul li.active > a, .nav-bar ul li.active>a:hover, .nav-bar ul li.active>a:focus{
+  color: #fff;
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+  background-color: transparent;
+}
+/*** - Navigation */
 
 .flower-animate{
   opacity:1 !important;

@@ -1,9 +1,16 @@
 import React from 'react';
-
+import Navigation from "./Navigation";
 const Header = () => {
   return (
-    <div className="">
-    </div>
+    <header className="">
+      <div className="app-logo">
+
+      </div>
+      <div id="main-nav">
+        <Navigation />
+      </div>
+
+    </header>
   );
 }
 

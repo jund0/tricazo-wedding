@@ -1,86 +1,65 @@
 import React, { useState, useRef } from 'react';
-import useWindowDimensions from './WindowSize';
+import useWindowDimensions from '../hooks/WindowSize';
 import {useTransition, animated, useChain} from "react-spring";
 const Landing = () => {
   // approach using react hooks
   const { height, width } = useWindowDimensions();
-  // considering
-  const [show, set] = useState(false);
+  const [landingPage, setLandingPage] = useState(false);
 
   const dateTransRef = useRef()
-  const [showDate, setShowDate] = useState(false)
-  const dateTransitions = useTransition(showDate, null, {
+  const dateTransitions = useTransition(landingPage, null, {
     ref: dateTransRef,
     from: { opacity: 0, transform: 'translateY(-100%)' },
     enter: { opacity: 1, transform: 'translateY(0)' },
     leave: { opacity: 0, transform: 'translateY(-100%)' },
   })
   const groomTransRef = useRef()
-  const [showGroom, setShowGroom] = useState(false)
-  const groomTransitions = useTransition(showGroom, null, {
+  const groomTransitions = useTransition(landingPage, null, {
     ref: groomTransRef,
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
   })
   const brideTransRef = useRef()
-  const [showBride, setShowBride] = useState(false)
-  const brideTransitions = useTransition(showBride, null, {
+  const brideTransitions = useTransition(landingPage, null, {
     ref: brideTransRef,
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
   })
 
-  // const centerPieceTransRef = useRef()
-  // const [showCenterPiece, setShowCenterPiece] = useState(true)
-  // const centerPieceTransitions = useTransition(showCenterPiece, null, {
-  //   ref: centerPieceTransRef,
-  //   from: { opacity: 0 },
-  //   enter: { opacity: 1 },
-  //   leave: { opacity: 0 },
-  // })
-  const heartTransRef = useRef()
-  const [showHeart, setShowHeart] = useState(true)
-  const heartTransitions = useTransition(showHeart, null, {
-    ref: heartTransRef,
-    from: { opacity: 1 },
+  const centerPieceTransRef = useRef()
+  const centerPieceTransitions = useTransition(landingPage, null, {
+    ref: centerPieceTransRef,
+    from: { opacity: 0 },
     enter: { opacity: 1 },
+    leave: { opacity: 1 },
+  })
+  const heartTransRef = useRef()
+  const heartTransitions = useTransition(!landingPage, null, {
+    ref: heartTransRef,
+    from: { opacity: 1, transition: 'all .3s ease-in-out' },
+    enter: { opacity: 1, transition: 'all .3s ease-in-out' },
     leave: { opacity: 0 },
   })
   const flowerTransRef = useRef()
-  const [transitionFlower, setTransitionFlower] = useState(true)
-  const flowerTransitions = useTransition(transitionFlower, null, {
+  const flowerTransitions = useTransition(landingPage, null, {
+    ref:flowerTransRef,
     from: { opacity: 0, transform: 'scale(.2) rotate(0deg)', transition: 'all .4s ease-in-out' },
     enter: { opacity: 1, transform: 'scale(.8) rotate(45deg)', transition: 'all .4s ease-in-out' },
     leave: { opacity: 0 },
   })
 
   const announcementTransRef = useRef()
-  const [showAnnouncement, setShowAnnouncement] = useState(false)
-  const announcementTransitions = useTransition(showAnnouncement, null, {
+  const announcementTransitions = useTransition(landingPage, null, {
     ref: announcementTransRef,
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
   })
 
-  useChain([dateTransRef, groomTransRef, brideTransRef, heartTransRef, flowerTransRef, announcementTransRef] , [0, 0.5, 0.5, 1, 1.5, 2])
-
-
-
-
-
-
-  if (!showDate) setShowDate(true);
-  if (!showGroom) setShowGroom(true);
-  if (!showBride) setShowBride(true);
-  //if (showCenterPiece) setShowCenterPiece(true);
-  if (showHeart) setShowHeart(false);
-  if (!transitionFlower) setTransitionFlower(true);
-  if (!showAnnouncement) setShowAnnouncement(true);
-
-
+  useChain([dateTransRef, groomTransRef, brideTransRef, centerPieceTransRef, heartTransRef, flowerTransRef, announcementTransRef] , [0, 0.5, 0.5, 1, 1.5, 1.5, 2.5])
+  if (!landingPage) setLandingPage(true);
 
   return (
     <section
@@ -100,30 +79,38 @@ const Landing = () => {
               ) }
             </div>
             <div className="col-3">
-              <div id="wedding-piece">
-                  { heartTransitions.map(({ item, key, props }) =>
-                    item &&
-                    <animated.img
-                      key={key}
-                      style={props}
-                      src="/images/CenterHeart.png"
-                      id="center-heart"
-                      className="img-responsive"
-                      alt="Center Piece"
-                    ></animated.img>
-                  ) }
-                  { flowerTransitions.map(({ item, key, props }) =>
-                    item &&
-                    <animated.img
-                      key={key}
-                      style={props}
-                      src="/images/CenterFlower.png"
-                      id="center-flower"
-                      className="img-responsive"
-                      alt="Center Piece"
-                    ></animated.img>
-                  ) }
-              </div>
+              { centerPieceTransitions.map(({ item, key, props }) =>
+                item &&
+                <animated.div
+                  key={key}
+                  style={props}
+                >
+                  <div id="wedding-piece">
+                    { heartTransitions.map(({ item, key, props }) =>
+                      item &&
+                      <animated.img
+                        key={key}
+                        style={props}
+                        src="/images/CenterHeart.png"
+                        id="center-heart"
+                        className="img-responsive"
+                        alt="Center Piece"
+                      ></animated.img>
+                    ) }
+                    { flowerTransitions.map(({ item, key, props }) =>
+                      item &&
+                      <animated.img
+                        key={key}
+                        style={props}
+                        src="/images/CenterFlower.png"
+                        id="center-flower"
+                        className="img-responsive"
+                        alt="Center Piece"
+                      ></animated.img>
+                    ) }
+                  </div>
+                </animated.div>
+              ) }
             </div>
             <div className="col-3">
               { brideTransitions.map(({ item, key, props }) =>
